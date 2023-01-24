@@ -1,11 +1,25 @@
 
-import Product from "./Product";
+import Product from "../Product";
 import data from "../../data";
-import Cart from "./Cart";
+import Cart from "../Cart";
 import { useState } from "react";
 
 const Row = () => {
     const [product, setProduct] = useState(data)
+
+	const increase = (id) => {
+		setProduct((cart) => {
+		  return product.map((product) => {
+			if (product.id === id) {
+			  return {
+				...product,
+				count: ++product.count,
+			  };
+			}
+			return product;
+		  });
+		});
+	  };
 
     const products = product.map((product) => {
         return (<Product product={product} key={product.id} />)

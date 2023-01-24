@@ -1,6 +1,8 @@
+import Count from "../Count";
+import ToCartBtn from "../ToCartBtn";
 import "./style.scss";
 
-const Product = ({product}) => {
+const Product = ({product, increaseCount}) => {
     const {id, imgSrc, title, itemsInBox, weight, price} = product;
     
 return (
@@ -12,20 +14,13 @@ return (
         <p><small data-items-in-box className="text-muted">{itemsInBox} шт.</small></p>
 
         <div className="details-wrapper">
-            <div className="items counter-wrapper">
-                <div className="items__control" data-action="minus">-</div>
-                <div className="items__current" data-counter>1</div>
-                <div className="items__control" data-action="plus">+</div>
-            </div>
-
+            <Count increaseCount={increaseCount} />
             <div className="price">
                 <div className="price__weight">{weight} г.</div>
                 <div className="price__currency">{price} ₽</div>
             </div>
         </div>
-
-        <button data-cart type="button" className="btn btn-block btn-outline-warning">+ в корзину</button>
-
+        <ToCartBtn />
     </div>
 </div>
 </div>
