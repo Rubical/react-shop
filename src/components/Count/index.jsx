@@ -1,6 +1,4 @@
 import "./style.scss";
-import { useContext } from "react";
-import RowContext from "./../Row/index";
 
 const Count = ({ product, increase, decrease }) => {
   return (

@@ -1,6 +1,7 @@
 import Product from "../Product";
 import data from "../../data";
 import Cart from "../Cart";
+import CartItem from "../CartItem";
 import { useState } from "react";
 
 const Row = () => {
@@ -35,6 +36,12 @@ const Row = () => {
     });
   };
 
+  const addToCart = ((id) => {
+    if (id===product.id) {
+      return <CartItem/>
+    }
+  } )
+
   const products = product.map((product) => {
     return (
       <Product
@@ -42,6 +49,7 @@ const Row = () => {
         key={product.id}
         increase={increase}
         decrease={decrease}
+        addToCart={addToCart}
       />
     );
   });

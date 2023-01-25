@@ -1,4 +1,5 @@
 import "./style.scss";
+import CartItem from "../CartItem";
 
 const Cart = () => {
     return (
@@ -8,7 +9,9 @@ const Cart = () => {
 				<div data-cart-empty className="alert alert-secondary" role="alert">
 					Корзина пуста
 				</div>
-				<div className="cart-wrapper"></div>
+				<div className="cart-wrapper">
+                    <CartItem />
+                </div>
 				<div className="cart-total">
 					<p data-cart-delivery className="none"><span className="h5">Доставка:</span> <span className="delivery-cost free">бесплатно</span> </p>
 					<p><span className="h5">Итого:</span> <span className="total-price">0</span> <span className="rouble">₽</span></p>

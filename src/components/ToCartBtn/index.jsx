@@ -1,8 +1,8 @@
 import "./style.scss"
 
-const ToCartBtn = () => {
+const ToCartBtn = ({addToCart, product}) => {
     return (
-        <button data-cart type="button" className="btn btn-block btn-outline-warning">+ в корзину</button>
+        <button onClick={() => addToCart(product.id)} data-cart type="button" className="btn btn-block btn-outline-warning">+ в корзину</button>
     )
 }
 

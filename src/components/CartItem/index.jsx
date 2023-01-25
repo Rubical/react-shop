@@ -1,21 +1,21 @@
 const CartItem = () => {
     return (
-        <div class="cart-item" data-id="${productInfo.id}">
-		    <div class="cart-item__top">
-			    <div class="cart-item__img">
-				    <img src="${productInfo.imgSrc}" alt="${productInfo.name} " />
+        <div className="cart-item">
+		    <div className="cart-item__top">
+			    <div className="cart-item__img">
+				    <img src="" alt=" " />
 			    </div>
-			    <div class="cart-item__desc">
-				    <div class="cart-item__title">${productInfo.name}</div>
-				    <div class="cart-item__weight">${productInfo.amount}/ ${productInfo.weight}</div>
-				    <div class="cart-item__details">
-					    <div class="items items--small counter-wrapper">
-						    <div class="items__control" data-action="minus">-</div>
-						    <div class="items__current" data-counter="">${productInfo.counter}</div>
-						    <div class="items__control" data-action="plus">+</div>
+			    <div className="cart-item__desc">
+				    <div className="cart-item__title"></div>
+				    <div className="cart-item__weight">/ </div>
+				    <div className="cart-item__details">
+					    <div className="items items--small counter-wrapper">
+						    <div className="items__control" data-action="minus">-</div>
+						    <div className="items__current" data-counter=""></div>
+						    <div className="items__control" data-action="plus">+</div>
 					    </div>
-					    <div class="price">
-						    <div class="price__currency">${productInfo.price}<div>
+					    <div className="price">
+						    <div className="price__currency"></div>
 					    </div>
 				    </div>
 			    </div>
