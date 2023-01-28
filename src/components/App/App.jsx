@@ -7,11 +7,11 @@ import Row from "../Row";
 function App() {
   return (
     <div className="App">
-      	<Header />
-		<div className="container mb-5">
-		<Row />
-		</div>
-	</div>
+      <Header />
+      <div className="container mb-5">
+        <Row />
+      </div>
+    </div>
   );
 }
 

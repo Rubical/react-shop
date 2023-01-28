@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const Row = () => {
   const [product, setProduct] = useState(data);
+  const [cartItem, setCartItem] = useState(null);
 
   const increase = (id) => {
     setProduct((product) => {
@@ -35,6 +36,23 @@ const Row = () => {
     });
   };
 
+  const addCartItem = () => {
+    window.addEventListener("click", function (event) {
+      if (event.target.hasAttribute("data-cart")) {
+        const targetEl = event.target.closest(".col-md-6");
+        setCartItem({
+          id: targetEl.querySelector(".card").getAttribute("data-id"),
+          imgSrc: targetEl.querySelector("img").getAttribute("src"),
+          name: targetEl.querySelector(".item-title").textContent,
+          amount: targetEl.querySelector("[data-items-in-box]").textContent,
+          weight: targetEl.querySelector(".price__weight").textContent,
+          counter: targetEl.querySelector("[data-counter]").textContent,
+          price: targetEl.querySelector(".price__currency").textContent,
+        });
+      }
+    });
+  };
+
   const products = product.map((product) => {
     return (
       <Product
@@ -42,9 +60,11 @@ const Row = () => {
         key={product.id}
         increase={increase}
         decrease={decrease}
+        addCartItem={addCartItem}
       />
     );
   });
+
   return (
     <div className="row">
       <div className="col-md-8">
@@ -53,7 +73,7 @@ const Row = () => {
         </div>
       </div>
       <div className="col-md-4">
-        <Cart />
+        <Cart product={product} cartItem={cartItem} />
       </div>
     </div>
   );
