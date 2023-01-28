@@ -49,6 +49,7 @@ const Row = () => {
           counter: targetEl.querySelector("[data-counter]").textContent,
           price: targetEl.querySelector(".price__currency").textContent,
         });
+        console.log(cartItem);
       }
     });
   };
