@@ -3,7 +3,7 @@ import Count from "../Count";
 import ToCartBtn from "../ToCartBtn";
 import "./style.scss";
 
-const Product = ({ product, increase, decrease }) => {
+const Product = ({ product, increase, decrease, addCartItem }) => {
   const { id, imgSrc, title, itemsInBox, weight, price } = product;
   return (
     <div className="col-md-6">
@@ -24,7 +24,7 @@ const Product = ({ product, increase, decrease }) => {
               <div className="price__currency">{price} ₽</div>
             </div>
           </div>
-          <ToCartBtn />
+          <ToCartBtn addCartItem={addCartItem} />
         </div>
       </div>
     </div>

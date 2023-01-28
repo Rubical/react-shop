@@ -1,8 +1,9 @@
 import "./style.scss";
 
-const ToCartBtn = () => {
+const ToCartBtn = ({ addCartItem }) => {
   return (
     <button
+      onClick={addCartItem}
       data-cart
       type="button"
       className="btn btn-block btn-outline-warning"
@@ -11,5 +12,4 @@ const ToCartBtn = () => {
     </button>
   );
 };
-
 export default ToCartBtn;
