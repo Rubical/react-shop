@@ -1,11 +1,11 @@
 const cart = [
   {
     id: 1,
-    title: "Филадельфия хит ролл",
+    title: "Калифорния хит ролл",
     itemsInBox: 6,
     weight: 180,
     price: 300,
-    imgSrc: "philadelphia.jpg",
+    imgSrc: "california-hit.jpg",
     count: 1,
   },
   {

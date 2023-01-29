@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const Row = () => {
   const [product, setProduct] = useState(data);
-  const [cartItem, setCartItem] = useState(null);
+  const [cartItem, setCartItem] = useState("");
 
   const increase = (id) => {
     setProduct((product) => {
@@ -36,20 +36,22 @@ const Row = () => {
     });
   };
 
-  const addCartItem = () => {
+  const addCartItem = (item) => {
     window.addEventListener("click", function (event) {
       if (event.target.hasAttribute("data-cart")) {
         const targetEl = event.target.closest(".col-md-6");
-        setCartItem({
-          id: targetEl.querySelector(".card").getAttribute("data-id"),
-          imgSrc: targetEl.querySelector("img").getAttribute("src"),
-          name: targetEl.querySelector(".item-title").textContent,
-          amount: targetEl.querySelector("[data-items-in-box]").textContent,
-          weight: targetEl.querySelector(".price__weight").textContent,
-          counter: targetEl.querySelector("[data-counter]").textContent,
-          price: targetEl.querySelector(".price__currency").textContent,
-        });
-        console.log(cartItem);
+        setCartItem([
+          ...cartItem,
+          {
+            id: targetEl.querySelector(".card").getAttribute("data-id"),
+            imgSrc: targetEl.querySelector("img").getAttribute("src"),
+            name: targetEl.querySelector(".item-title").textContent,
+            amount: targetEl.querySelector("[data-items-in-box]").textContent,
+            weight: targetEl.querySelector(".price__weight").textContent,
+            counter: targetEl.querySelector("[data-counter]").textContent,
+            price: targetEl.querySelector(".price__currency").textContent,
+          },
+        ]);
       }
     });
   };
@@ -74,7 +76,12 @@ const Row = () => {
         </div>
       </div>
       <div className="col-md-4">
-        <Cart product={product} cartItem={cartItem} />
+        <Cart
+          product={product}
+          cartItem={cartItem}
+          increase={increase}
+          decrease={decrease}
+        />
       </div>
     </div>
   );

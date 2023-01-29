@@ -1,19 +1,25 @@
 import "./style.scss";
 import CartItem from "./../CartItem/index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Cart = ({ product, cartItem }) => {
-  const cartItems = [];
   if (cartItem) {
-    cartItems.push(cartItem);
+    console.log(cartItem);
+    var cartItems = cartItem.map((cartItem) => {
+      return <CartItem cartItem={cartItem} key={cartItem.id} />;
+    });
   }
-  console.log(cartItems);
 
-  // if (cartItem) {
-  //   var cartItems = cartItem.map((item) => {
-  //     <CartItem cartItem={cartItem} />;
-  //   });
-  // }
+  const cartEmptyBadge = document.querySelector("[data-cart-empty]");
+  const orderForm = document.querySelector("#order-form");
+
+  useEffect(() => {
+    if (cartItem) {
+      cartEmptyBadge.classList.add("none");
+      orderForm.classList.remove("none");
+    }
+  }, [cartItem]);
+
   return (
     <div className="card mb-4">
       <div className="card-body">
@@ -21,7 +27,7 @@ const Cart = ({ product, cartItem }) => {
         <div data-cart-empty className="alert alert-secondary" role="alert">
           Корзина пуста
         </div>
-        {/* <div className="cart-wrapper">{cartItems}</div> */}
+        <div className="cart-wrapper">{cartItems}</div>
         <div className="cart-total">
           <p data-cart-delivery className="none">
             <span className="h5">Доставка:</span>
