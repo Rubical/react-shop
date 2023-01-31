@@ -2,11 +2,23 @@ import "./style.scss";
 import CartItem from "./../CartItem/index";
 import { useEffect, useState } from "react";
 
-const Cart = ({ product, cartItem }) => {
+const Cart = ({
+  product,
+  cartItem,
+  decreaseCartItemCount,
+  increaseCartItemCount,
+}) => {
   if (cartItem) {
     console.log(cartItem);
     var cartItems = cartItem.map((cartItem) => {
-      return <CartItem cartItem={cartItem} key={cartItem.id} />;
+      return (
+        <CartItem
+          cartItem={cartItem}
+          key={cartItem.id}
+          decreaseCartItemCount={decreaseCartItemCount}
+          increaseCartItemCount={increaseCartItemCount}
+        />
+      );
     });
   }
 

@@ -1,6 +1,10 @@
 import "./style.scss";
 
-const CartItem = ({ cartItem }) => {
+const CartItem = ({
+  cartItem,
+  increaseCartItemCount,
+  decreaseCartItemCount,
+}) => {
   return (
     <div className="cart-item" data-id={cartItem.id}>
       <div className="cart-item__top">
@@ -14,13 +18,25 @@ const CartItem = ({ cartItem }) => {
           </div>
           <div className="cart-item__details">
             <div className="items items--small counter-wrapper">
-              <div className="items__control" data-action="minus">
+              <div
+                className="items__control"
+                data-action="minus"
+                onClick={() => {
+                  decreaseCartItemCount(cartItem.id);
+                }}
+              >
                 -
               </div>
               <div className="items__current" data-counter="">
-                {cartItem.counter}
+                {cartItem.count}
               </div>
-              <div className="items__control" data-action="plus">
+              <div
+                className="items__control"
+                data-action="plus"
+                onClick={() => {
+                  increaseCartItemCount(cartItem.id);
+                }}
+              >
                 +
               </div>
             </div>

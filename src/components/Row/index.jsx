@@ -36,24 +36,63 @@ const Row = () => {
     });
   };
 
-  const addCartItem = (item) => {
-    window.addEventListener("click", function (event) {
-      if (event.target.hasAttribute("data-cart")) {
-        const targetEl = event.target.closest(".col-md-6");
-        setCartItem([
-          ...cartItem,
-          {
-            id: targetEl.querySelector(".card").getAttribute("data-id"),
-            imgSrc: targetEl.querySelector("img").getAttribute("src"),
-            name: targetEl.querySelector(".item-title").textContent,
-            amount: targetEl.querySelector("[data-items-in-box]").textContent,
-            weight: targetEl.querySelector(".price__weight").textContent,
-            counter: targetEl.querySelector("[data-counter]").textContent,
-            price: targetEl.querySelector(".price__currency").textContent,
-          },
-        ]);
-      }
+  const increaseCartItemCount = (id) => {
+    setCartItem((cartItem) => {
+      return cartItem.map((cartItem) => {
+        if (cartItem.id === id) {
+          return {
+            ...cartItem,
+            count: ++cartItem.count,
+          };
+        }
+        return cartItem;
+      });
     });
+  };
+
+  const decreaseCartItemCount = (id) => {
+    setCartItem((cartItem) => {
+      return cartItem.map((cartItem) => {
+        if (cartItem.id === id) {
+          const newCount = cartItem.count - 1 > 1 ? --cartItem.count : 1;
+          return {
+            ...cartItem,
+            count: newCount,
+          };
+        }
+        return cartItem;
+      });
+    });
+  };
+
+  const addCartItem = (item) => {
+    // if (
+    //   cartItem &&
+    //   cartItem.find(
+    //     (item) =>
+    //       item.id === targetEl.querySelector("[data-counter]").textContent
+    //   )
+    // ) {
+    //   setCartItem(...cartItem, {
+    //     count: "5",
+    //   });
+    //   console.log(
+    //     parseInt(targetEl.querySelector("[data-counter]").textContent)
+    //   );
+    // } else {
+    setCartItem([
+      ...cartItem,
+      {
+        id: product[0].id,
+        imgSrc: product[0].imgSrc,
+        name: product[0].title,
+        amount: product.itemsInBox,
+        weight: product.weight,
+        count: product.count,
+        price: product.price,
+      },
+    ]);
+    // }
   };
 
   const products = product.map((product) => {
@@ -77,6 +116,8 @@ const Row = () => {
       </div>
       <div className="col-md-4">
         <Cart
+          increaseCartItemCount={increaseCartItemCount}
+          decreaseCartItemCount={decreaseCartItemCount}
           product={product}
           cartItem={cartItem}
           increase={increase}
