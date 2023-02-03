@@ -1,10 +1,8 @@
-import { useRef } from "react";
 import "./style.scss";
 
-const ToCartBtn = ({ addCartItem }) => {
+const ToCartBtn = () => {
   return (
     <button
-      onClick={addCartItem}
       data-cart
       type="button"
       className="btn btn-block btn-outline-warning"

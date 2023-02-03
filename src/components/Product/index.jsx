@@ -1,30 +1,29 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Count from "../Count";
 import ToCartBtn from "../ToCartBtn";
 import "./style.scss";
 
-const Product = ({ product, increase, decrease, addCartItem, toCartBtn }) => {
-  const { id, imgSrc, title, itemsInBox, weight, price } = product;
+const Product = () => {
   return (
     <div className="col-md-6">
-      <div className="card mb-4" data-id={id}>
-        <img className="product-img" src={`./img/roll/${imgSrc}`} alt="" />
+      <div className="card mb-4" data-id>
+        <img className="product-img" src="#!" alt="" />
         <div className="card-body text-center">
-          <h4 className="item-title">{title}</h4>
+          <h4 className="item-title"></h4>
           <p>
             <small data-items-in-box className="text-muted">
-              {itemsInBox} шт.
+              шт.
             </small>
           </p>
 
           <div className="details-wrapper">
-            <Count increase={increase} decrease={decrease} product={product} />
+            <Count />
             <div className="price">
-              <div className="price__weight">{weight} г.</div>
-              <div className="price__currency">{price} ₽</div>
+              <div className="price__weight"> г.</div>
+              <div className="price__currency"> ₽</div>
             </div>
           </div>
-          <ToCartBtn toCartBtn={toCartBtn} addCartItem={addCartItem} />
+          <ToCartBtn />
         </div>
       </div>
     </div>
