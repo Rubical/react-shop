@@ -1,25 +1,39 @@
 .product-img {
-    width: 265px;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .item-title {
-    font-size: 1.5rem;
-    font-weight: 500;
-    font-family: "Merriweather", serif;
-    height: 70px;
-  }
-  
-  .details-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  
+  width: 265px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.item-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: "Merriweather", serif;
+  height: 70px;
+}
+
+.details-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.price {
+  text-align: left;
+}
+
+.price__weight {
+  color: #6c757d !important;
+  font-size: 80%;
+  line-height: 1;
+}
+
+.price__currency {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+}
