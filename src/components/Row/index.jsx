@@ -8,7 +8,23 @@ const Row = () => {
   const [productItem, setProductItem] = useState(products);
 
   const addCartItem = (item) => {
-    setCart([...cart, item]);
+    let isInArray = false;
+    cart.forEach((el) => {
+      if (el.id === item.id) {
+        isInArray = true;
+        setCart(
+          cart.map((el) => {
+            if (isInArray === true) {
+              return { ...el, count: el.count + item.count };
+            }
+            return el;
+          })
+        );
+      }
+    });
+    if (!isInArray) {
+      setCart([...cart, item]);
+    }
   };
 
   const decreaseCount = (id) => {
@@ -41,6 +57,45 @@ const Row = () => {
     });
   };
 
+  const decreaseCartCount = (id) => {
+    setCart((cart) => {
+      return cart.map((item) => {
+        if (item.id === id) {
+          const newCount = item.count - 1 > 1 ? item.count - 1 : 1;
+          return {
+            ...item,
+            count: newCount,
+          };
+        }
+
+        return item;
+      });
+    });
+  };
+
+  const increaseCartCount = (id) => {
+    setCart((cart) => {
+      return cart.map((item) => {
+        if (item.id === id) {
+          const newCount = item.count + 1;
+          return {
+            ...item,
+            count: newCount,
+          };
+        }
+        return item;
+      });
+    });
+  };
+
+  const deleteCartItem = (id) => {
+    setCart((cart) => {
+      return cart.forEach((el) => {
+        return el.filter(el.count !== 1);
+      });
+    });
+  };
+
   return (
     <div className="row">
       <div className="col-md-8">
@@ -59,7 +114,12 @@ const Row = () => {
         </div>
       </div>
       <div className="col-md-4">
-        <Cart cart={cart} />
+        <Cart
+          cart={cart}
+          increaseCartCount={increaseCartCount}
+          decreaseCartCount={decreaseCartCount}
+          deleteCartItem={deleteCartItem}
+        />
       </div>
     </div>
   );

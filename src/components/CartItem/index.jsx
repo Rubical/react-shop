@@ -1,8 +1,9 @@
+import { useState } from "react";
 import "./style.scss";
 
-const CartItem = ({ cartItem }) => {
-  const { title, itemsInBox, weight, price, imgSrc, count } = cartItem;
-  console.log(cartItem);
+const CartItem = ({ cartItem, increaseCartCount, decreaseCartCount }) => {
+  const { title, itemsInBox, weight, price, imgSrc, count, id } = cartItem;
+
   return (
     <div className="cart-item" data-id>
       <div className="cart-item__top">
@@ -16,13 +17,23 @@ const CartItem = ({ cartItem }) => {
           </div>
           <div className="cart-item__details">
             <div className="items items--small counter-wrapper">
-              <div className="items__control" data-action="minus">
+              <div
+                className="items__control"
+                data-action="minus"
+                onClick={() => {
+                  decreaseCartCount(id);
+                }}
+              >
                 -
               </div>
               <div className="items__current" data-counter="">
                 {count}
               </div>
-              <div className="items__control" data-action="plus">
+              <div
+                className="items__control"
+                data-action="plus"
+                onClick={() => increaseCartCount(id)}
+              >
                 +
               </div>
             </div>
