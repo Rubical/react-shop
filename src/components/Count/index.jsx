@@ -1,15 +1,25 @@
+import { useState } from "react";
+import CartItem from "../CartItem";
 import "./style.scss";
 
-const Count = () => {
+const Count = ({ increaseCount, decreaseCount, count, id }) => {
   return (
     <div className="items counter-wrapper">
-      <div className="items__control" data-action="minus">
+      <div
+        className="items__control"
+        data-action="minus"
+        onClick={() => decreaseCount(id)}
+      >
         -
       </div>
       <div className="items__current" data-counter>
-        1
+        {count}
       </div>
-      <div className="items__control" data-action="plus">
+      <div
+        className="items__control"
+        data-action="plus"
+        onClick={() => increaseCount(id)}
+      >
         +
       </div>
     </div>
