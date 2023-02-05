@@ -1,7 +1,12 @@
 import { useState } from "react";
 import "./style.scss";
 
-const CartItem = ({ cartItem, increaseCartCount, decreaseCartCount }) => {
+const CartItem = ({
+  cartItem,
+  increaseCartCount,
+  decreaseCartCount,
+  deleteCartItem,
+}) => {
   const { title, itemsInBox, weight, price, imgSrc, count, id } = cartItem;
 
   return (
@@ -22,6 +27,7 @@ const CartItem = ({ cartItem, increaseCartCount, decreaseCartCount }) => {
                 data-action="minus"
                 onClick={() => {
                   decreaseCartCount(id);
+                  deleteCartItem(cartItem);
                 }}
               >
                 -

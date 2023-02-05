@@ -3,19 +3,34 @@ import CartStatus from "../CartStatus/CartStatus";
 import CartTotal from "../CartTotal/CartTotal";
 import CartItem from "../CartItem";
 import "./style.scss";
-import { createRef, useRef } from "react";
 
-const showCart = ({ cart, increaseCartCount, decreaseCartCount }) => {
-  return cart.map((cartItem) => {
+const showCart = ({
+  cart,
+  increaseCartCount,
+  decreaseCartCount,
+  deleteCartItem,
+}) => {
+  const cartItems = cart.map((cartItem) => {
     return (
-      <CartItem
-        cartItem={cartItem}
-        key={cartItem.id}
-        increaseCartCount={increaseCartCount}
-        decreaseCartCount={decreaseCartCount}
-      />
+      <>
+        <CartItem
+          cartItem={cartItem}
+          key={cartItem.id}
+          increaseCartCount={increaseCartCount}
+          decreaseCartCount={decreaseCartCount}
+          deleteCartItem={deleteCartItem}
+        />
+      </>
     );
   });
+  return (
+    <>
+      {cartItems}
+      <CartStatus />
+      <CartTotal cart={cart} />
+      <CartOrder />
+    </>
+  );
 };
 
 const showNothing = () => {
@@ -26,7 +41,12 @@ const showNothing = () => {
   );
 };
 
-const Cart = ({ cart, increaseCartCount, decreaseCartCount }) => {
+const Cart = ({
+  cart,
+  increaseCartCount,
+  decreaseCartCount,
+  deleteCartItem,
+}) => {
   return (
     <div className="card mb-4">
       <div className="card-body">
@@ -34,15 +54,16 @@ const Cart = ({ cart, increaseCartCount, decreaseCartCount }) => {
 
         <div className="cart-wrapper">
           {cart.length > 0
-            ? showCart({ cart, increaseCartCount, decreaseCartCount })
-            : showNothing(cart)}
+            ? showCart({
+                cart,
+                increaseCartCount,
+                decreaseCartCount,
+                deleteCartItem,
+              })
+            : showNothing()}
         </div>
-        <div className="cart-total">
-          <CartStatus />
-          <CartTotal />
-        </div>
+        <div className="cart-total"></div>
       </div>
-      <CartOrder />
     </div>
   );
 };

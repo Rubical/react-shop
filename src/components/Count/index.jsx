@@ -8,7 +8,9 @@ const Count = ({ increaseCount, decreaseCount, count, id }) => {
       <div
         className="items__control"
         data-action="minus"
-        onClick={() => decreaseCount(id)}
+        onClick={() => {
+          decreaseCount(id);
+        }}
       >
         -
       </div>

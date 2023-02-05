@@ -9,19 +9,16 @@ const Row = () => {
 
   const addCartItem = (item) => {
     let isInArray = false;
-    cart.forEach((el) => {
-      if (el.id === item.id) {
-        isInArray = true;
-        setCart(
-          cart.map((el) => {
-            if (isInArray === true) {
-              return { ...el, count: el.count + item.count };
-            }
-            return el;
-          })
-        );
-      }
-    });
+    setCart(
+      cart.map((el) => {
+        if (el.id === item.id) {
+          isInArray = true;
+          return { ...el, count: el.count + item.count };
+        }
+        return el;
+      })
+    );
+
     if (!isInArray) {
       setCart([...cart, item]);
     }
@@ -88,12 +85,10 @@ const Row = () => {
     });
   };
 
-  const deleteCartItem = (id) => {
-    setCart((cart) => {
-      return cart.forEach((el) => {
-        return el.filter(el.count !== 1);
-      });
-    });
+  const deleteCartItem = (item) => {
+    if (item.count === 1) {
+      setCart(cart.filter((el) => el.id !== item.id));
+    }
   };
 
   return (
